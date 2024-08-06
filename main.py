@@ -14,6 +14,7 @@ class Main(commands.Bot):
         guild = discord.Object(id=config.guild)
         self.tree.copy_global_to(guild=guild)
         await self.tree.sync(guild=guild)
+        await self.load_extension("cogs.message_delete")
 
 
 bot = Main()
