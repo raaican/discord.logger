@@ -15,6 +15,7 @@ class Main(commands.Bot):
         self.tree.copy_global_to(guild=guild)
         await self.tree.sync(guild=guild)
         await self.load_extension("cogs.message_delete")
+        await self.load_extension("cogs.voice_state")
 
 
 bot = Main()
