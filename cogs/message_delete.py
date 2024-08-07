@@ -10,6 +10,9 @@ class MessageDelete(commands.Cog):
     async def on_message_delete(self, message):
         if message.author.bot:
             return
+        elif message.author.id in config.excluded_user: 
+            print("excluded user deleted a message")
+            return
         else:
             channel = self.bot.get_channel(config.mod_channel)
             await channel.send(
