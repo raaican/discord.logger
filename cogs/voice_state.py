@@ -16,12 +16,12 @@ class VoiceState(commands.Cog):
                 if after.channel.id == config.create:
                     return
                 elif after.channel.id:
-                    await channel.send(f"{member.mention}, joined {after.channel.mention}")
+                    await channel.send(f"{member.mention} joined {after.channel.mention}")
             if after.channel is None:
                 if before.channel.id == config.create:
                     return
                 else:
-                    await channel.send(f"{member.mention}, left {before.channel.mention}")
+                    await channel.send(f"{member.mention} left {before.channel.mention}")
             if before.channel and after.channel and after.channel.id != config.create:
                 if before.channel.id == config.create:
                     await channel.send(f"{member.mention} created a channel > {after.channel.mention}")
