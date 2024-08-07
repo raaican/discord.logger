@@ -14,10 +14,7 @@ class VoiceState(commands.Cog):
             if after.channel.id is config.create:
                 return
             elif after.channel.id:
-                # message = f"{member.mention}, joined {after.channel.mention}"
-                await self.log_event(
-                        channel,
-                        f"{member.mention} joined {after.channel.mention}",
-                        discord.Color.green(),
-                        channel_id=after.channel.id
-                        )
+                await channel.send(f"{member.mention}, joined {after.channel.mention}")
+
+async def setup(bot):
+    await bot.add_cog(VoiceState(bot))
