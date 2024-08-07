@@ -81,5 +81,6 @@ This project is currently a work in progress.
             ```
 
 ## License
+Copyright (c) 2024 raican
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
