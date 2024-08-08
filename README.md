@@ -79,6 +79,21 @@ This project is currently a work in progress.
             ```sh
             python main.py
             ```
+ ## Running with Docker
+
+ I have provided a [Dockerfile](Dockerfile) to build the image.
+
+ 1. Build the image
+
+ ```sh
+ docker build -t logger .
+ ```
+
+ 2. Run the container
+
+ ```sh
+ docker run -d --name discord.logger logger
+ ```
 
 ## License
 Copyright (c) 2024 raican
