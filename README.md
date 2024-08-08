@@ -10,6 +10,8 @@ This project is currently a work in progress.
     * switched,
     * created (using [Voice Master](https://voicemaster.xyz/))
 
+ * Simple slash command to send a Discord Server invite link
+
 ## Installation
 1. Clone the repo:
 
