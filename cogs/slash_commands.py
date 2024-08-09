@@ -2,7 +2,6 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 import config
 import requests
-from bs4 import BeautifulSoup
 
 
 class SlashCommands(commands.Cog):
@@ -13,25 +12,19 @@ class SlashCommands(commands.Cog):
     async def invite(self, interaction: Interaction):
         await interaction.response.send_message(f"{config.invite}")
 
-    @app_commands.command(name="rank", description="Get osu! rank")
-    async def rank(self, interaction: Interaction, username:str):
-        user_name = username
-        url = f"https://osu.ppy.sh/users/{user_name}"
-        response = requests.get(url)
-
+    @app_commands.command(name="profile", description="Get osu! profile link")
+    async def profile(self, interaction: Interaction, profile: str):
+        profile_link = f"https://osu.ppy.sh/users/{profile}"
+        response = requests.get(profile_link)
         if response.status_code == 200:
-            soup = BeautifulSoup(response.text, "html.parser")
-            meta_description = soup.find("meta", attrs={"name": "description"})
-            meta_og_title = soup.find("meta", attrs={"property": "og:title"})
-            description_content = meta_description.get("content", "")
-            og_title_content = meta_og_title.get("content", "")
-            await interaction.response.send_message(f"{og_title_content.split(' · ')[0]} = {description_content}")
+            message = f"[{profile}]({profile_link})"
+            await interaction.response.send_message(message)
         else:
             await interaction.response.send_message("User not found")
 
     async def cog_unload(self):
         self.bot.tree.remove_command(self.invite.name)
-        self.bot.tree.remove_command(self.rank.name)
+        self.bot.tree.remove_command(self.profile.name)
 
 
 async def setup(bot):
