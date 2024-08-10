@@ -24,7 +24,7 @@ class SlashCommands(commands.Cog):
             await interaction.response.send_message("User not found")
 
     @app_commands.command(name="create", description="Create a voice channel")
-    async def create(self, interaction: Interaction, name: str, category: str = "Default"):
+    async def create(self, interaction: Interaction, name: str, category: str = config.default_category, limit: int = 0):
         guild = interaction.guild
         if interaction.user.id not in config.mods:
             await interaction.response.send_message("no")
@@ -34,7 +34,7 @@ class SlashCommands(commands.Cog):
                 category_name = discord.utils.get(guild.categories, name=category)
                 if not category_name:
                     category_name = await guild.create_category(name=category)
-            await guild.create_voice_channel(name, category=category_name)
+            await guild.create_voice_channel(name, category=category_name, user_limit=limit)
             await interaction.response.send_message(f"{name} created")
 
     @app_commands.command(name="remove", description="Remove a voice channel")
