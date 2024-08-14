@@ -1,8 +1,10 @@
 #!./venv/bin/python3
 
 import discord
+import random
 from discord.ext import commands
 import config
+from discord.ext import tasks
 
 
 class Main(commands.Bot):
@@ -22,9 +24,26 @@ class Main(commands.Bot):
 
 bot = Main()
 
+@tasks.loop(seconds=59)
+async def change_status():
+    global i
+    game = iter([
+        discord.Activity(name="Yorushika",
+                         type=discord.ActivityType.listening),
+        discord.Game(name="osu!"),
+        discord.Activity(name="Brazil",
+                         type=discord.ActivityType.competing),
+        discord.Activity(name="the Sky",
+                         type=discord.ActivityType.watching),
+        ])
+
+    for i in range(random.randint(1, 4)):
+        i = next(game)
+    await bot.change_presence(activity=i)
 
 @bot.event
 async def on_ready():
+    change_status.start()
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
     print("===================================================")
 
