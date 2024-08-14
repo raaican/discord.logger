@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from discord import app_commands, Interaction
 import config
-import requests
 
 
 class SlashCommands(commands.Cog):
@@ -12,16 +11,6 @@ class SlashCommands(commands.Cog):
     @app_commands.command(name="invite", description="Get invite link")
     async def invite(self, interaction: Interaction):
         await interaction.response.send_message(f"{config.invite}")
-
-    @app_commands.command(name="profile", description="Get osu! profile link")
-    async def profile(self, interaction: Interaction, profile: str):
-        profile_link = f"https://osu.ppy.sh/users/{profile}"
-        response = requests.get(profile_link)
-        if response.status_code == 200:
-            message = f"[{profile}]({profile_link})"
-            await interaction.response.send_message(message)
-        else:
-            await interaction.response.send_message("User not found")
 
     @app_commands.command(name="create", description="Create a voice channel")
     async def create(self, interaction: Interaction, name: str, category: str = config.default_category, limit: int = 0):
@@ -50,12 +39,6 @@ class SlashCommands(commands.Cog):
                 await interaction.response.send_message(f"{name} removed")
             else:
                 await interaction.response.send_message("Channel not found")
-
-    async def cog_unload(self):
-        self.bot.tree.remove_command(self.invite.name)
-        self.bot.tree.remove_command(self.profile.name)
-        self.bot.tree.remove_command(self.create.name)
-        self.bot.tree.remove_command(self.remove.name)
 
 
 async def setup(bot):

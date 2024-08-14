@@ -12,6 +12,7 @@ class Main(commands.Bot):
     async def setup_hook(self):
         await self.load_extension("cogs.slash_commands")
         await self.load_extension("cogs.mod_slash_commands")
+        await self.load_extension("cogs.osu_related")
         guild = discord.Object(id=config.guild)
         self.tree.copy_global_to(guild=guild)
         await self.tree.sync(guild=guild)
