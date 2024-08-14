@@ -8,15 +8,12 @@ class MessageDelete(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-        if message.author.bot:
+        if message.author.bot or message.author.id in config.excluded_user:
             return
-        elif message.author.id in config.excluded_user: 
-            return
-        else:
-            channel = self.bot.get_channel(config.mod_channel)
-            await channel.send(
-                    f"{message.author.mention} deleted: '{message.content}'"
-                    )
+        channel = self.bot.get_channel(config.mod_channel)
+        await channel.send(
+                f"{message.author.mention} deleted: '{message.content}'"
+                )
 
 
 async def setup(bot):
