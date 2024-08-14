@@ -12,6 +12,9 @@ This project is currently a work in progress.
 
  * Simple slash command to send a Discord Server invite link
 
+## DISCLAIMER
+To run this APP smoothly, you'll need to be familiar with reading and understanding the source code. The APP may require adjustments or customization based on your specific needs and environment, and being able to navigate and modify the code will be essential for proper setup and operation.
+
 ## Installation
 1. Clone the repo:
 
