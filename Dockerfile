@@ -1,12 +1,14 @@
-FROM alpine:latest
+FROM python:3.12-slim-bookworm
 WORKDIR /app
 
-RUN mkdir -p cogs
+COPY requirements.txt .
+RUN apt-get update && apt-get install -y sqlite3 \
+    && pip install --break-system-packages --no-cache-dir -r requirements.txt \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY cogs/ cogs/
-COPY config.py main.py requirements.txt ./
+RUN echo ".headers on\n.mode column\n.separator |" > ~/.sqliterc
 
-RUN apk add --no-cache python3 py3-pip 
-RUN pip install --break-system-packages -r requirements.txt
+COPY . .
 
 CMD ["python3", "main.py"]
