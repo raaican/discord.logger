@@ -13,6 +13,7 @@ class Main(commands.Bot):
 
     async def setup_hook(self):
         await self.load_extension("cogs.slash_commands")
+        await self.load_extension("cogs.reaction_assign")
         await self.load_extension("cogs.mod_slash_commands")
         await self.load_extension("cogs.osu_related")
         await self.load_extension("cogs.to_meme")
