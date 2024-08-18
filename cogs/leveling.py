@@ -46,7 +46,7 @@ class Leveling(commands.Cog):
         level_up_threshold = 100 * level
 
         progress = exp / level_up_threshold
-        progress_bar = '=' * int(progress * 20) +  ' ' * (20 - int(progress * 20))
+        progress_bar = '==' * int(progress * 20) +  '  ' * (20 - int(progress * 20))
         progress_message = (f"Level: {level}\n"
                             f"Exp: {exp}/{level_up_threshold}\n"
                             f"Progress: [{progress_bar}] ({int(progress * 100)}%)")
