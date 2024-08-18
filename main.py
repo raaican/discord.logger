@@ -15,6 +15,7 @@ class Main(commands.Bot):
         await self.load_extension("cogs.slash_commands")
         await self.load_extension("cogs.mod_slash_commands")
         await self.load_extension("cogs.osu_related")
+        await self.load_extension("cogs.to_meme")
         guild = discord.Object(id=config.guild)
         self.tree.copy_global_to(guild=guild)
         await self.tree.sync(guild=guild)
