@@ -7,6 +7,7 @@ import config
 class ModCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.ann = config.announcement_channel
 
     @app_commands.command(name="purge", description="Purge messages")
     async def purge(self, interaction: Interaction, amount: int):
@@ -46,6 +47,14 @@ class ModCommands(commands.Cog):
         await channel.delete()
         await interaction.response.send_message(f"{name} removed by {interaction.user.mention}")
 
+    @app_commands.command(name="announce", description="send an announcement")
+    async def announce(self, interaction: Interaction, announcement: str):
+        channel = self.bot.get_channel(self.ann)
+        if interaction.user.id not in config.mods:
+            await interaction.response.send_message("no", ephemeral=True)
+            return
+        await channel.send(announcement)
+        await interaction.response.send_message("announcement sent", ephemeral=True)
 
 async def setup(bot):
     await bot.add_cog(ModCommands(bot))
