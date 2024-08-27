@@ -21,7 +21,6 @@ class MessageHandler(commands.Cog):
         if self.role_id is None:
             await interaction.response.send_message("Role not found", ephemeral=True)
             return
-
         await interaction.response.send_message(desc)
         self.handler = await interaction.original_response()
         await self.handler.add_reaction(self.emoji)
