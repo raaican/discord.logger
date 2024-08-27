@@ -17,12 +17,10 @@ class Main(commands.Bot):
         await self.load_extension("cogs.mod_slash_commands")
         await self.load_extension("cogs.osu_related")
         await self.load_extension("cogs.to_meme")
-        await self.load_extension("cogs.leveling")
         guild = discord.Object(id=config.guild)
         self.tree.copy_global_to(guild=guild)
         await self.tree.sync(guild=guild)
         await self.load_extension("cogs.message_delete")
-        await self.load_extension("cogs.exp_gain")
         await self.load_extension("cogs.voice_state")
 
 
