@@ -1,4 +1,5 @@
 import discord
+import config
 from discord.ext import commands
 from discord import app_commands, Interaction
 
@@ -12,10 +13,13 @@ class MessageHandler(commands.Cog):
 
     @app_commands.command(name="role", description="assign role")
     async def invite(self, interaction: Interaction, role_name: str, desc: str = "React to get a role"):
+        if interaction.user.id not in config.mods:
+            await interaction.response.send_message("no", ephemeral=True)
+            return
         guild = interaction.guild
         self.role_id = discord.utils.get(guild.roles, name=role_name).id
         if self.role_id is None:
-            await interaction.response.send_message("Role not found")
+            await interaction.response.send_message("Role not found", ephemeral=True)
             return
 
         await interaction.response.send_message(desc)
