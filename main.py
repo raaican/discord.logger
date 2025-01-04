@@ -26,6 +26,7 @@ class Main(commands.Bot):
 
 bot = Main()
 
+
 @tasks.loop(seconds=59)
 async def change_status():
     global i
@@ -43,10 +44,11 @@ async def change_status():
         i = next(game)
     await bot.change_presence(activity=i)
 
+
 @bot.event
 async def on_ready():
     change_status.start()
-    print(f"Logged in as {bot.user} (ID: {bot.user.id})")
+    print(f"Logged in as {bot.user} (ID: {bot.user.id})!")
     print("===================================================")
 
 bot.run(config.token)
