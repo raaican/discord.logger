@@ -42,7 +42,7 @@ To run this APP smoothly, you'll need to be familiar with reading and understand
 
 5. Enter python venv:
 
-    * **Unix**:
+    * **Linux**:
 
     ```sh
     source venv/bin/activate
