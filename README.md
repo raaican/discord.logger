@@ -72,7 +72,7 @@ To run this APP smoothly, you'll need to be familiar with reading and understand
 
 1. Run `main.py`
 
-    * **Unix**:
+    * **Linux**:
         ```sh
         chmod +x main.py
         ./main.py
