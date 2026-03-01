@@ -101,6 +101,6 @@ To run this APP smoothly, you'll need to be familiar with reading and understand
  ```
 
 ## License
-Copyright (c) 2024 raican
+Copyright (c) 2026 raican
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
